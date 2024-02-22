@@ -8,22 +8,31 @@
       </v-app-bar>
 
       <v-main>
-        <router-view/>
+        <v-layout>
+          <div>
+            <category-form/>
+          </div>
+          <v-container>
+            <router-view/>
+          </v-container>
+        </v-layout>
       </v-main>
     </v-container>
   </v-app>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
+import CategoryForm from "@/components/CategoryForm.vue";
 
 export default defineComponent({
   name: 'App',
+  components: {CategoryForm},
 })
 </script>
 
 <style>
-.appbar-title{
+.appbar-title {
   font-weight: bold;
   text-decoration: none;
   color: black;
