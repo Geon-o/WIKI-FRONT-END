@@ -1,9 +1,9 @@
 <template>
  <v-container class="category">
    <v-expansion-panels>
-     <v-expansion-panel class="mb-1">
+     <v-expansion-panel class="mb-1" v-for="item in listData" :key="item.id">
        <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-minus">
-         Java
+         { item.title }
        </v-expansion-panel-title>
        <v-expansion-panel-text>
          <a href="/">객체지향</a><br/>
@@ -36,12 +36,20 @@
  </v-container>
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
+<script setup lang="ts">
+import { useListStore } from "@/store/useMainStore";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
-export default defineComponent({
-  name: 'CategoryForm',
-})
+const store = useListStore();
+
+const { listData } = storeToRefs(store);
+const { getList } = store;
+
+onMounted(() => {
+  getList.call(store);
+});
+
 </script>
 
 <style scoped>
