@@ -13,7 +13,6 @@ export const useListStore = defineStore('listStore',{
             try {
                 const {data, status} = await axios.post(`${baseUrl}/category/list`);
                 if (status === 200) {
-                    console.log(data);
                     this.listData = data;
                 }
             } catch (err) {
